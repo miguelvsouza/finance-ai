@@ -18,6 +18,7 @@ model Transaction {
   name          String
   type          TransactionType
   amount        Decimal                  @db.Decimal(10, 2)
+  date          DateTime
   category      TransactionCategory
   paymentMethod TransactionPaymentMethod @map("payment_method")
   userId        String                   @map("user_id")
