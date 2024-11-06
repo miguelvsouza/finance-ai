@@ -1,13 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { SignInButton } from "@clerk/nextjs";
-import { LogInIcon } from "lucide-react";
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { SignInButton } from "@clerk/nextjs"
+import { LogInIcon } from "lucide-react"
+import Image from "next/image"
 
 function SignInPage() {
   return (
     <div className="grid h-screen w-full grid-cols-2">
       <div className="mx-auto flex max-w-[550px] flex-col justify-center gap-8 px-12 py-8">
-        <Image src="/logo.svg" alt="Finance AI" width={173} height={39} />
+        <Image
+          src="/logo.svg"
+          alt="Finance AI"
+          width={173}
+          height={39}
+        />
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">Bem-vindo</h1>
           <p className="text-muted-foreground">
@@ -33,7 +38,7 @@ function SignInPage() {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default SignInPage;
+export default SignInPage
