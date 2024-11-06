@@ -44,10 +44,13 @@ import {
 import { Input } from "./ui/input"
 import { createTransaction } from "@/actions/create-transaction"
 import { toast } from "sonner"
+import { useState } from "react"
 
 const addTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
-  amount: z.number(),
+  amount: z
+    .number({ required_error: "O valor é obrigatório." })
+    .positive({ message: "O valor precisa ser maior que R$ 0,00." }),
   type: z.nativeEnum(TransactionType, {
     required_error: "O tipo é obrigatório.",
   }),
@@ -78,16 +81,22 @@ function AddTransactionDialog() {
   async function onSubmit(data: FormSchema) {
     try {
       await createTransaction(data)
+      setIsDialogOpen(false)
       toast.success("Salvo.")
+      form.reset()
     } catch (error) {
       console.log(error)
       toast.error("Ocorreu um erro.")
     }
   }
 
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+
   return (
     <Dialog
+      open={isDialogOpen}
       onOpenChange={(open) => {
+        setIsDialogOpen(open)
         if (!open) {
           form.reset()
         }
@@ -136,7 +145,7 @@ function AddTransactionDialog() {
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
                     <MoneyInput
-                      placeholder="Digite o nome..."
+                      placeholder="R$ 0.000,00"
                       onValueChange={({ floatValue }) =>
                         field.onChange(floatValue)
                       }
