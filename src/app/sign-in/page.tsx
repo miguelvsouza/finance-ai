@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { SignInButton } from "@clerk/nextjs";
 import { LogInIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -15,10 +16,12 @@ function SignInPage() {
             personalizados, facilitando o controle do seu orçamento.
           </p>
         </div>
-        <Button variant="outline">
-          <LogInIcon />
-          <span>Entrar ou criar uma conta</span>
-        </Button>
+        <SignInButton>
+          <Button variant="outline">
+            <LogInIcon />
+            <span>Entrar ou criar uma conta</span>
+          </Button>
+        </SignInButton>
       </div>
 
       <div className="relative h-full w-full">
