@@ -42,10 +42,11 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Input } from "./ui/input"
+import { createTransaction } from "@/actions/create-transaction"
 
 const addTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
-  amount: z.string().trim().min(1, { message: "O valor é obrigatório." }),
+  amount: z.number(),
   type: z.nativeEnum(TransactionType, {
     required_error: "O tipo é obrigatório.",
   }),
@@ -65,7 +66,7 @@ function AddTransactionDialog() {
     resolver: zodResolver(addTransactionSchema),
     defaultValues: {
       name: "",
-      amount: "",
+      amount: 0,
       type: TransactionType.DEPOSIT,
       category: TransactionCategory.OTHER,
       paymentMethod: TransactionPaymentMethod.CASH,
@@ -73,8 +74,12 @@ function AddTransactionDialog() {
     },
   })
 
-  function onSubmit(data: FormSchema) {
-    console.log(JSON.stringify(data))
+  async function onSubmit(data: FormSchema) {
+    try {
+      await createTransaction(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -129,7 +134,9 @@ function AddTransactionDialog() {
                   <FormControl>
                     <MoneyInput
                       placeholder="Digite o nome..."
-                      {...field}
+                      onValueChange={({ floatValue }) =>
+                        field.onChange(floatValue)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
