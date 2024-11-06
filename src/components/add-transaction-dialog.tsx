@@ -43,6 +43,7 @@ import {
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { createTransaction } from "@/actions/create-transaction"
+import { toast } from "sonner"
 
 const addTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
@@ -77,8 +78,10 @@ function AddTransactionDialog() {
   async function onSubmit(data: FormSchema) {
     try {
       await createTransaction(data)
+      toast.success("Salvo.")
     } catch (error) {
       console.log(error)
+      toast.error("Ocorreu um erro.")
     }
   }
 
