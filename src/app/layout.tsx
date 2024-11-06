@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Mulish } from "next/font/google"
 import "./globals.css"
 import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 import { Toaster } from "@/components/ui/sonner"
 
 const mulish = Mulish({
@@ -18,7 +19,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="pt-BR">
         <link
           rel="icon"

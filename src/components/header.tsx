@@ -2,6 +2,7 @@ import { User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./ui/button"
+import { UserButton } from "@clerk/nextjs"
 
 export function Header() {
   return (
@@ -33,10 +34,7 @@ export function Header() {
           Assinatura
         </Link>
       </div>
-      <Button variant="outline">
-        <User />
-        <span>Miguel Souza</span>
-      </Button>
+      <UserButton showName />
     </header>
   )
 }
