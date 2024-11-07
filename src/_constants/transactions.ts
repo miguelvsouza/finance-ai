@@ -5,9 +5,13 @@ import {
 } from "@prisma/client"
 
 export const TRANSACTION_TYPE_OPTIONS = [
-  { value: TransactionType.DEPOSIT, label: "Depósito" },
-  { value: TransactionType.EXPENSE, label: "Gasto" },
-  { value: TransactionType.INVESTMENT, label: "Investimento" },
+  { value: TransactionType.DEPOSIT, label: "Depósito", color: "text-primary" },
+  { value: TransactionType.EXPENSE, label: "Despesa", color: "text-danger" },
+  {
+    value: TransactionType.INVESTMENT,
+    label: "Investimento",
+    color: "text-accent-foreground",
+  },
 ]
 
 export const TRANSACTION_CATEGORY_LABELS = {
