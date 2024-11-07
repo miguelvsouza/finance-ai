@@ -53,7 +53,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "actions",
     header: "",
     cell: () => (
-      <div className="space-x-1">
+      <div className="flex items-center justify-end space-x-1">
         <Button
           className="text-muted-foreground"
           variant="ghost"
