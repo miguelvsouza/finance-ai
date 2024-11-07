@@ -2,6 +2,11 @@ import { Button } from "@/_components/ui/button"
 import { SignInButton } from "@clerk/nextjs"
 import { LogInIcon } from "lucide-react"
 import Image from "next/image"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Sign In - Finance AI",
+}
 
 function SignInPage() {
   return (

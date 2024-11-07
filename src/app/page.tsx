@@ -14,6 +14,11 @@ import {
 } from "lucide-react"
 import TransactionItem from "./_components/transaction-item"
 import Link from "next/link"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Dashboard - Finance AI",
+}
 
 function DashboardPage() {
   return (
@@ -40,7 +45,7 @@ function DashboardPage() {
 
         <div className="grid grid-cols-3 gap-10">
           <div className="col-span-2 space-y-6">
-            <div className="space-y-3 rounded-md border px-6 py-8 transition hover:bg-muted">
+            <div className="space-y-3 rounded-md border px-6 py-8 transition hover:bg-muted/20">
               <div className="flex items-center gap-2">
                 <Icon>
                   <Wallet size={18} />
@@ -64,7 +69,7 @@ function DashboardPage() {
             </div>
 
             <div className="flex items-center justify-between gap-6">
-              <div className="flex flex-1 flex-col gap-3 rounded-md border px-6 py-8 transition hover:bg-muted">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="info">
                     <PiggyBank size={18} />
@@ -77,7 +82,7 @@ function DashboardPage() {
                   R$ 3.500
                 </span>
               </div>
-              <div className="flex flex-1 flex-col gap-3 rounded-md border px-6 py-8 transition hover:bg-muted">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="success">
                     <TrendingUp size={18} />
@@ -88,7 +93,7 @@ function DashboardPage() {
                   R$ 3.500
                 </span>
               </div>
-              <div className="flex flex-1 flex-col gap-3 rounded-md border px-6 py-8 transition hover:bg-muted">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="danger">
                     <TrendingDown size={18} />

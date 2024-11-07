@@ -3,6 +3,11 @@ import { Header } from "@/_components/header"
 import { DataTable } from "@/_components/ui/data-table"
 import { prisma } from "@/_lib/prisma"
 import { transactionColumns } from "./_columns"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Transações - Finance AI",
+}
 
 async function TransactionsPage() {
   const transactions = await prisma.transaction.findMany()
