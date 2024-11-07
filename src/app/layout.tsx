@@ -4,6 +4,7 @@ import { dark } from "@clerk/themes"
 import type { Metadata } from "next"
 import { Mulish } from "next/font/google"
 import "./globals.css"
+import { TooltipProvider } from "@/_components/ui/tooltip"
 
 const mulish = Mulish({
   subsets: ["latin-ext"],
@@ -32,8 +33,10 @@ export default function RootLayout({
           sizes="<generated>"
         />
         <body className={`${mulish.className} dark antialiased`}>
-          <Toaster />
-          {children}
+          <TooltipProvider delayDuration={300}>
+            <Toaster />
+            {children}
+          </TooltipProvider>
         </body>
       </html>
     </ClerkProvider>

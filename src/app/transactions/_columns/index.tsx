@@ -9,6 +9,11 @@ import { Transaction } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { Pencil, Trash2 } from "lucide-react"
 import { TransactionTypeBadge } from "../_components/transaction-type-badge"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/_components/ui/tooltip"
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -54,20 +59,35 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     header: "",
     cell: () => (
       <div className="flex items-center justify-end space-x-1">
-        <Button
-          className="text-muted-foreground"
-          variant="ghost"
-          size="icon"
-        >
-          <Pencil />
-        </Button>
-        <Button
-          className="text-muted-foreground"
-          variant="ghost"
-          size="icon"
-        >
-          <Trash2 />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="text-muted-foreground"
+              variant="ghost"
+              size="icon"
+            >
+              <Pencil />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Editar</p>
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="text-muted-foreground"
+              variant="ghost"
+              size="icon"
+            >
+              <Trash2 />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Excluir</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
     ),
   },
