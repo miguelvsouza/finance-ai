@@ -1,5 +1,6 @@
 "use client"
 
+import { createTransaction } from "@/_actions/create-transaction"
 import {
   Form,
   FormControl,
@@ -7,19 +8,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/_components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/_components/ui/select"
 import {
   TRANSACTION_CATEGORY_OPTIONS,
   TRANSACTION_PAYMENT_METHOD_OPTIONS,
   TRANSACTION_TYPE_OPTIONS,
-} from "@/constants/transactions"
+} from "@/_constants/transactions"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   TransactionCategory,
@@ -27,7 +28,9 @@ import {
   TransactionType,
 } from "@prisma/client"
 import { ArrowDownUp } from "lucide-react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 import { MoneyInput } from "./money-input"
 import { Button } from "./ui/button"
@@ -42,11 +45,8 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Input } from "./ui/input"
-import { createTransaction } from "@/actions/create-transaction"
-import { toast } from "sonner"
-import { useState } from "react"
 
-const addTransactionSchema = z.object({
+const createTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
   amount: z
     .number({ required_error: "O valor é obrigatório." })
@@ -63,11 +63,11 @@ const addTransactionSchema = z.object({
   date: z.coerce.date({ required_error: "A data é obrigatória." }),
 })
 
-type FormSchema = z.infer<typeof addTransactionSchema>
+type CreateTransactionSchema = z.infer<typeof createTransactionSchema>
 
-function AddTransactionDialog() {
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(addTransactionSchema),
+function CreateTransactionModal() {
+  const form = useForm<CreateTransactionSchema>({
+    resolver: zodResolver(createTransactionSchema),
     defaultValues: {
       name: "",
       amount: 0,
@@ -78,7 +78,7 @@ function AddTransactionDialog() {
     },
   })
 
-  async function onSubmit(data: FormSchema) {
+  async function onSubmit(data: CreateTransactionSchema) {
     try {
       await createTransaction(data)
       setIsDialogOpen(false)
@@ -291,4 +291,4 @@ function AddTransactionDialog() {
   )
 }
 
-export default AddTransactionDialog
+export default CreateTransactionModal

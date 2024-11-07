@@ -1,8 +1,6 @@
-import { User } from "lucide-react"
+import { UserButton } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "./ui/button"
-import { UserButton } from "@clerk/nextjs"
 
 export function Header() {
   return (

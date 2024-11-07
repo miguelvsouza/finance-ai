@@ -1,18 +1,14 @@
 "use client"
 
-import {
-  Transaction,
-  TransactionCategory,
-  TransactionPaymentMethod,
-} from "@prisma/client"
-import { ColumnDef } from "@tanstack/react-table"
-import { TransactionTypeBadge } from "../_components/transaction-type-badge"
-import { Button } from "@/components/ui/button"
-import { Pencil, Trash2 } from "lucide-react"
+import { Button } from "@/_components/ui/button"
 import {
   TRANSACTION_CATEGORY_LABELS,
   TRANSACTION_PAYMENT_METHOD_LABELS,
-} from "@/constants/transactions"
+} from "@/_constants/transactions"
+import { Transaction } from "@prisma/client"
+import { ColumnDef } from "@tanstack/react-table"
+import { Pencil, Trash2 } from "lucide-react"
+import { TransactionTypeBadge } from "../_components/transaction-type-badge"
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {

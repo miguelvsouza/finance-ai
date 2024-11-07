@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/_components/ui/badge"
 import { Transaction, TransactionType } from "@prisma/client"
 import { CircleIcon } from "lucide-react"
 
@@ -23,7 +23,7 @@ export function TransactionTypeBadge({
 
   if (transaction.type === TransactionType.EXPENSE) {
     return (
-      <Badge className="text-danger bg-danger/10 hover:bg-danger/20 font-bold">
+      <Badge className="bg-danger/10 font-bold text-danger hover:bg-danger/20">
         <CircleIcon
           className="mr-1 fill-destructive"
           size={10}

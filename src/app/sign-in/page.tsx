@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/_components/ui/button"
 import { SignInButton } from "@clerk/nextjs"
 import { LogInIcon } from "lucide-react"
 import Image from "next/image"
