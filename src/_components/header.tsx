@@ -1,10 +1,10 @@
 import { UserButton } from "@clerk/nextjs"
 import Image from "next/image"
-import Link from "next/link"
+import { NavLink } from "./nav-link"
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-b-muted px-8 py-6">
+    <header className="flex items-center justify-between border-b border-b-muted px-8 py-4">
       <div className="flex items-center gap-12">
         <Image
           src="/logo.svg"
@@ -13,24 +13,9 @@ export function Header() {
           height={39}
           priority
         />
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-foreground"
-        >
-          Dashboard
-        </Link>
-        <Link
-          href="/transactions"
-          className="text-muted-foreground hover:text-foreground"
-        >
-          Transações
-        </Link>
-        <Link
-          href="/subscription"
-          className="text-muted-foreground hover:text-foreground"
-        >
-          Assinatura
-        </Link>
+        <NavLink href="/">Dashboard</NavLink>
+        <NavLink href="/transactions">Transações</NavLink>
+        <NavLink href="/subscription">Assinatura</NavLink>
       </div>
       <UserButton showName />
     </header>
