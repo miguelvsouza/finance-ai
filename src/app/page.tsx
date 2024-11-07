@@ -5,7 +5,6 @@ import { Button } from "@/_components/ui/button"
 import { Separator } from "@/_components/ui/separator"
 import {
   ChevronDown,
-  DollarSign,
   Eye,
   FileText,
   PiggyBank,

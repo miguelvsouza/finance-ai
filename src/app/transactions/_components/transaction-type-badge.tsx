@@ -28,7 +28,7 @@ export function TransactionTypeBadge({
           className="mr-1 fill-destructive"
           size={10}
         />
-        <span>Gasto</span>
+        <span>Despesa</span>
       </Badge>
     )
   }
