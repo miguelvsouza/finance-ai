@@ -4,6 +4,11 @@ import { Icon } from "@/_components/icon"
 import { Button } from "@/_components/ui/button"
 import { Separator } from "@/_components/ui/separator"
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/_components/ui/tooltip"
+import {
   ChevronDown,
   Eye,
   FileText,
@@ -12,9 +17,9 @@ import {
   TrendingUp,
   Wallet,
 } from "lucide-react"
-import TransactionItem from "./_components/transaction-item"
-import Link from "next/link"
 import type { Metadata } from "next"
+import Link from "next/link"
+import TransactionItem from "./_components/transaction-item"
 
 export const metadata: Metadata = {
   title: "Dashboard - Finance AI",
@@ -57,12 +62,19 @@ function DashboardPage() {
                   <span className="text-4xl font-bold tracking-tight">
                     R$ 2.700
                   </span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                  >
-                    <Eye />
-                  </Button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                      >
+                        <Eye />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Ocultar</p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
                 <CreateTransactionModal />
               </div>
