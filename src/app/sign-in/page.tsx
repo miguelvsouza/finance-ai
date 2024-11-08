@@ -1,11 +1,9 @@
-import { Button } from "@/_components/ui/button"
-import { SignInButton } from "@clerk/nextjs"
-import { LogInIcon } from "lucide-react"
-import Image from "next/image"
 import type { Metadata } from "next"
+import Image from "next/image"
+import { SignInForm } from "./(components)/sign-in-form"
 
 export const metadata: Metadata = {
-  title: "Sign In - Finance AI",
+  title: "Entrar - Finance AI",
 }
 
 function SignInPage() {
@@ -26,12 +24,12 @@ function SignInPage() {
             personalizados, facilitando o controle do seu orçamento.
           </p>
         </div>
-        <SignInButton>
-          <Button variant="outline">
-            <LogInIcon />
-            <span>Entrar ou criar uma conta</span>
-          </Button>
-        </SignInButton>
+
+        <SignInForm />
+
+        <p className="text-xs text-muted-foreground">
+          Finance AI &#174; Termos de uso e política de privacidade
+        </p>
       </div>
 
       <div className="relative h-full w-full">
