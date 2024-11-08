@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 function SignInPage() {
   return (
-    <div className="grid h-screen w-full grid-cols-2">
+    <div className="grid h-screen w-full grid-cols-1 md:grid-cols-2">
       <div className="mx-auto flex max-w-[550px] flex-col justify-center gap-8 px-12 py-8">
         <Image
           src="/logo.svg"
@@ -34,7 +34,7 @@ function SignInPage() {
         </p>
       </div>
 
-      <div className="relative h-full w-full">
+      <div className="relative hidden h-full w-full md:block">
         <Image
           className="object-cover"
           src="/login.png"
