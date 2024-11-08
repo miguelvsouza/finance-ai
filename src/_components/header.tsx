@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs"
 import Image from "next/image"
 import { NavLink } from "./nav-link"
 
@@ -17,7 +16,6 @@ export function Header() {
         <NavLink href="/transactions">Transações</NavLink>
         <NavLink href="/subscription">Assinatura</NavLink>
       </div>
-      <UserButton showName />
     </header>
   )
 }

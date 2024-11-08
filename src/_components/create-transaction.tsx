@@ -1,6 +1,5 @@
 "use client"
 
-import { createTransaction } from "@/_actions/create-transaction"
 import {
   Form,
   FormControl,
@@ -80,7 +79,7 @@ function CreateTransactionModal() {
 
   async function onSubmit(data: CreateTransactionSchema) {
     try {
-      await createTransaction(data)
+      console.log(data)
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()

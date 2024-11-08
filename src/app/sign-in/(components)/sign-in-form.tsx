@@ -1,8 +1,8 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 
 import { Button } from "@/_components/ui/button"
 import {
@@ -14,31 +14,35 @@ import {
   FormMessage,
 } from "@/_components/ui/form"
 import { Input } from "@/_components/ui/input"
-import { LogInIcon } from "lucide-react"
+import { LoaderCircle, LogInIcon } from "lucide-react"
 import Link from "next/link"
-
-const formSchema = z.object({
-  email: z
-    .string({ required_error: "É necessário informar seu e-mail." })
-    .email({ message: "Informe um e-mail válido." }),
-  password: z
-    .string({ required_error: "É necessário informar sua senha." })
-    .min(8, { message: "Informe sua senha com pelo menos 8 caracteres." }),
-})
-
-type FormSchema = z.infer<typeof formSchema>
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import { SignInSchema, signInSchema } from "./schema"
 
 export function SignInForm() {
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  const router = useRouter()
+  const form = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   })
 
-  function onSubmit(values: FormSchema) {
-    console.log(values)
+  async function onSubmit({ email, password }: SignInSchema) {
+    try {
+      await axios.post("/api/sessions/authenticate", {
+        email,
+        password,
+      })
+      toast.success("Levando você até o dashboard...")
+      router.push("/") // Redirecionar para dashboard
+    } catch {
+      toast.error("Credenciais inválidas!")
+      form.resetField("password")
+      form.setFocus("password")
+    }
   }
 
   return (
@@ -85,9 +89,19 @@ export function SignInForm() {
           <Button
             type="submit"
             variant="default"
+            disabled={form.formState.isSubmitting}
           >
-            <LogInIcon />
-            <span>Fazer login</span>
+            {form.formState.isSubmitting ? (
+              <>
+                <LoaderCircle className="animate-spin" />
+                <span>Carregando...</span>
+              </>
+            ) : (
+              <>
+                <LogInIcon />
+                <span>Fazer login</span>
+              </>
+            )}
           </Button>
           <Link
             href="/sign-up"
