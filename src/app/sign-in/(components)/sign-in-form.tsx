@@ -61,6 +61,7 @@ export function SignInForm() {
               <FormLabel>E-mail</FormLabel>
               <FormControl>
                 <Input
+                  type="email"
                   placeholder="Seu e-mail"
                   {...field}
                 />
