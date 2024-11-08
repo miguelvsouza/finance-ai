@@ -16,16 +16,18 @@ import {
 import { Input } from "@/_components/ui/input"
 import { LoaderCircle, LogInIcon } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "sonner"
 import { SignInSchema, signInSchema } from "./schema"
 
 export function SignInForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      email: "",
+      email: searchParams.get("email") ?? "",
       password: "",
     },
   })
