@@ -13,13 +13,7 @@ interface TransactionItemProps {
   amount: number
 }
 
-function TransactionItem({
-  title,
-  type,
-  paymentMethod,
-  date,
-  amount,
-}: TransactionItemProps) {
+function TransactionItem({ title, type, date, amount }: TransactionItemProps) {
   const [{ color }] = TRANSACTION_TYPE_OPTIONS.filter(
     (option) => option.value === type,
   )
