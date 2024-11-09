@@ -52,7 +52,7 @@ function DashboardPage() {
 
         <div className="grid w-full grid-cols-3 gap-6 md:gap-10">
           <div className="col-span-3 space-y-6 md:col-span-2">
-            <div className="space-y-3 rounded-md border px-6 py-8 transition hover:bg-muted/20">
+            <div className="space-y-3 rounded-md border px-6 py-8 md:transition md:hover:bg-muted/20">
               <div className="flex items-center gap-2">
                 <Icon>
                   <Wallet size={18} />
@@ -85,7 +85,7 @@ function DashboardPage() {
             </div>
 
             <div className="flex items-center justify-between gap-6 overflow-x-auto">
-              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 md:transition md:hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="success">
                     <TrendingUp size={18} />
@@ -96,7 +96,7 @@ function DashboardPage() {
                   R$ 3.500,00
                 </span>
               </div>
-              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 md:transition md:hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="danger">
                     <TrendingDown size={18} />
@@ -107,7 +107,7 @@ function DashboardPage() {
                   R$ 3.500,00
                 </span>
               </div>
-              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 md:transition md:hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="info">
                     <PiggyBank size={18} />
