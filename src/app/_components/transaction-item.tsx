@@ -27,16 +27,16 @@ function TransactionItem({ title, type, date, amount }: TransactionItemProps) {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         <Icon>
-          <DollarSign className="text-sm text-muted-foreground" />
+          <DollarSign className="text-xs text-muted-foreground md:text-sm" />
         </Icon>
         <div>
-          <p>{title}</p>
-          <span className="text-sm text-muted-foreground">
+          <p className="text-sm md:text-base">{title}</p>
+          <span className="text-xs text-muted-foreground md:text-sm">
             {date.toLocaleDateString("pt-BR")}
           </span>
         </div>
       </div>
-      <span className={`text-sm font-semibold ${color}`}>
+      <span className={`text-xs font-semibold md:text-sm ${color}`}>
         {formattedAmount}
       </span>
     </div>

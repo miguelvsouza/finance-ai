@@ -6,6 +6,7 @@ export function Header() {
     <header className="flex items-center justify-between border-b border-b-muted px-8 py-4">
       <div className="flex items-center gap-12">
         <Image
+          className="hidden md:block"
           src="/logo.svg"
           alt="Finance AI"
           width={173}

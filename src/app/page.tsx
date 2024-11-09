@@ -30,14 +30,12 @@ function DashboardPage() {
     <div className="h-screen">
       <Header />
 
-      <div className="grid space-y-6 px-8 py-6">
+      <div className="grid w-full space-y-6 px-8 py-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold tracking-tight">Dashboard</h2>
-          <div className="space-x-3">
-            <Button variant="ghost">
-              <span>Relatório IA</span>
-              <FileText />
-            </Button>
+          <h2 className="hidden font-bold tracking-tight md:block md:text-2xl">
+            Dashboard
+          </h2>
+          <div className="flex items-center justify-center gap-3">
             <Button
               className="rounded-full"
               variant="outline"
@@ -45,11 +43,15 @@ function DashboardPage() {
               <span>Novembro</span>
               <ChevronDown />
             </Button>
+            <Button variant="ghost">
+              <span>Relatório IA</span>
+              <FileText />
+            </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-10">
-          <div className="col-span-2 space-y-6">
+        <div className="grid w-full grid-cols-3 gap-6 md:gap-10">
+          <div className="col-span-3 space-y-6 md:col-span-2">
             <div className="space-y-3 rounded-md border px-6 py-8 transition hover:bg-muted/20">
               <div className="flex items-center gap-2">
                 <Icon>
@@ -59,8 +61,8 @@ function DashboardPage() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-4xl font-bold tracking-tight">
-                    R$ 2.700
+                  <span className="text-xl font-bold tracking-tight md:text-4xl">
+                    R$ 2.700,00
                   </span>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -76,24 +78,13 @@ function DashboardPage() {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <CreateTransactionModal />
+                <div className="hidden md:block">
+                  <CreateTransactionModal />
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-6">
-              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
-                <div className="flex items-center gap-2">
-                  <Icon variant="info">
-                    <PiggyBank size={18} />
-                  </Icon>
-                  <h3 className="text-sm text-muted-foreground">
-                    Investimentos
-                  </h3>
-                </div>
-                <span className="text-xl font-bold tracking-tight">
-                  R$ 3.500
-                </span>
-              </div>
+            <div className="flex items-center justify-between gap-6 overflow-x-auto">
               <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
                 <div className="flex items-center gap-2">
                   <Icon variant="success">
@@ -101,8 +92,8 @@ function DashboardPage() {
                   </Icon>
                   <h3 className="text-sm text-muted-foreground">Receitas</h3>
                 </div>
-                <span className="text-xl font-bold tracking-tight">
-                  R$ 3.500
+                <span className="font-bold tracking-tight md:text-xl">
+                  R$ 3.500,00
                 </span>
               </div>
               <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
@@ -112,20 +103,36 @@ function DashboardPage() {
                   </Icon>
                   <h3 className="text-sm text-muted-foreground">Despesas</h3>
                 </div>
-                <span className="text-xl font-bold tracking-tight">
-                  R$ 3.500
+                <span className="font-bold tracking-tight md:text-xl">
+                  R$ 3.500,00
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col gap-3 rounded-md border p-6 transition hover:bg-muted/20">
+                <div className="flex items-center gap-2">
+                  <Icon variant="info">
+                    <PiggyBank size={18} />
+                  </Icon>
+                  <h3 className="text-sm text-muted-foreground">
+                    Investimentos
+                  </h3>
+                </div>
+                <span className="font-bold tracking-tight md:text-xl">
+                  R$ 3.500,00
                 </span>
               </div>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-3 md:col-span-1">
             <div className="space-y-6 rounded-md border p-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold tracking-tight">Transações</h3>
+                <h3 className="text-lg font-bold tracking-tight md:text-xl">
+                  Transações
+                </h3>
                 <Link href="/transactions">
                   <Button
                     variant="outline"
                     size="sm"
+                    className="text-xs md:text-sm"
                   >
                     Ver mais
                   </Button>
