@@ -1,7 +1,7 @@
+import { encrypt } from "@/_lib/jose-jwt"
 import { prisma } from "@/_lib/prisma"
 import { env } from "@/env"
 import { compare } from "bcrypt"
-import jwt from "jsonwebtoken"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 import { authenticateSchema } from "./schema"
@@ -31,18 +31,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Unauthorized." }, { status: 401 })
   }
 
-  const isPasswordValid = await compare(password, user.password)
+  const isPasswordIncorrect = !(await compare(password, user.password))
 
-  if (!isPasswordValid) {
+  if (isPasswordIncorrect) {
     return NextResponse.json({ message: "Unauthorized." }, { status: 401 })
   }
 
-  const token = jwt.sign({}, env.JWT_SECRET, {
-    subject: user.id,
-    expiresIn: "1h",
-  })
+  const sessionCookie = await encrypt({ userId: user.id })
 
-  cookies().set("session", token, {
+  cookies().set("session", sessionCookie, {
     httpOnly: true,
     secure: env.NODE_ENV === "production",
     maxAge: 3600,
