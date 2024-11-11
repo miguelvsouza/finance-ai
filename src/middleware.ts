@@ -39,3 +39,17 @@ export default async function middleware(request: NextRequest) {
   // Se o usuário estiver tentando acessar uma rota que é pública, deixa-o prosseguir. Se for uma rota privada e ele possuir um sessionCookie válido, deixa-o prosseguir.
   return NextResponse.next()
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - specific files in the public folder (e.g., favicon.ico, sitemap.xml, robots.txt)
+     * - static file extensions (e.g., .ico, .svg, .png, .jpg, .jpeg, .gif, .webp, .pdf)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.ico$|.*\\.svg$|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.gif$|.*\\.webp$|.*\\.pdf$).*)",
+  ],
+}
