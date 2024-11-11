@@ -1,8 +1,6 @@
-import { encrypt } from "@/_lib/jose-jwt"
+import { createSession } from "@/_functions/sessions/create-session"
 import { prisma } from "@/_lib/prisma"
-import { env } from "@/env"
-import { compare } from "bcrypt"
-import { cookies } from "next/headers"
+import { compare } from "@/_lib/bcrypt"
 import { NextResponse } from "next/server"
 import { authenticateSchema } from "./schema"
 
@@ -37,15 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Unauthorized." }, { status: 401 })
   }
 
-  const sessionCookie = await encrypt({ userId: user.id })
-
-  cookies().set("session", sessionCookie, {
-    httpOnly: true,
-    secure: env.NODE_ENV === "production",
-    maxAge: 3600,
-    sameSite: "strict",
-    path: "/",
-  })
+  await createSession({ userId: user.id })
 
   return NextResponse.json({}, { status: 200 })
 }

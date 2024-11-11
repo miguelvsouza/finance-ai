@@ -1,8 +1,7 @@
-import { cookies } from "next/headers"
+import { deleteSession } from "@/_functions/sessions/delete-session"
 import { NextResponse } from "next/server"
 
-export async function DELETE() {
-  cookies().delete("session")
-
+export function DELETE() {
+  deleteSession()
   return NextResponse.json({}, { status: 200 })
 }
