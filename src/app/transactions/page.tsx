@@ -4,13 +4,28 @@ import { DataTable } from "@/_components/ui/data-table"
 import { prisma } from "@/_lib/prisma"
 import { transactionColumns } from "./_columns"
 import type { Metadata } from "next"
+import { cookies } from "next/headers"
+import { verifySession } from "@/_functions/sessions/verify-session"
+import { NextResponse } from "next/server"
+import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Transações - Finance AI",
 }
 
 async function TransactionsPage() {
-  const transactions = await prisma.transaction.findMany()
+  const cookie = cookies().get("session")?.value
+  const session = await verifySession(cookie)
+
+  if (!session?.userId) {
+    redirect("/sign-in")
+  }
+
+  const transactions = await prisma.transaction.findMany({
+    where: {
+      userId: session.userId,
+    },
+  })
 
   return (
     <div>
