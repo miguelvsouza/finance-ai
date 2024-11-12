@@ -6,7 +6,6 @@ import { transactionColumns } from "./_columns"
 import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { verifySession } from "@/_functions/sessions/verify-session"
-import { NextResponse } from "next/server"
 import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
