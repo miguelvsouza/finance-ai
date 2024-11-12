@@ -45,6 +45,7 @@ import {
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 import axios from "axios"
+import { revalidatePath } from "next/cache"
 
 const createTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
@@ -98,6 +99,7 @@ function CreateTransactionModal() {
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()
+      revalidatePath("/transactions")
     } catch (error) {
       console.log(error)
       toast.error("Ocorreu um erro.")
