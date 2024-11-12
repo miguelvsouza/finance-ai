@@ -1,8 +1,12 @@
 import { jwtVerify } from "jose"
 import { ENCODED_KEY } from "./create-session"
 
-export async function verifySession(sessionCookie: string | undefined = "") {
+export async function verifySession(sessionCookie: string | undefined) {
   try {
+    if (!sessionCookie) {
+      return
+    }
+
     const { payload } = await jwtVerify(sessionCookie, ENCODED_KEY, {
       algorithms: ["HS256"],
     })
