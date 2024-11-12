@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { SignUpForm } from "./(components)/sign-up-form"
+import { SignUpForm } from "./_components/sign-up-form"
 
 export const metadata: Metadata = {
   title: "Criar conta - Finance AI",

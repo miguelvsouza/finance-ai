@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { SignInForm } from "./(components)/sign-in-form"
+import { SignInForm } from "./_components/sign-in-form"
 
 export const metadata: Metadata = {
   title: "Entrar - Finance AI",

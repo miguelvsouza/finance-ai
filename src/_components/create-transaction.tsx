@@ -26,7 +26,6 @@ import {
   TransactionPaymentMethod,
   TransactionType,
 } from "@prisma/client"
-import axios from "axios"
 import { ArrowDownUp } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -87,14 +86,7 @@ function CreateTransactionModal() {
     date,
   }: CreateTransactionSchema) {
     try {
-      await axios.post("/api/transactions/create-transaction", {
-        name,
-        amount,
-        type,
-        category,
-        paymentMethod,
-        date,
-      })
+      console.log({ name, amount, type, category, paymentMethod, date })
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()

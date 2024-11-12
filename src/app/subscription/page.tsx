@@ -1,5 +1,5 @@
 import { Header } from "@/_components/header"
-import { Subscription } from "./(components)/subscription"
+import { Subscription } from "./_components/subscription"
 
 export default function SubscriptionPage() {
   return (

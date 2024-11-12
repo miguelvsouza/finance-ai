@@ -1,9 +1,0 @@
-{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "prettier.semi": false,
-  "prettier.useEditorConfig": false,
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  }
-}
