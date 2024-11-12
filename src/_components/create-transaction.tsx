@@ -26,6 +26,7 @@ import {
   TransactionPaymentMethod,
   TransactionType,
 } from "@prisma/client"
+import axios from "axios"
 import { ArrowDownUp } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -44,8 +45,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Input } from "./ui/input"
-import axios from "axios"
-import { revalidatePath } from "next/cache"
 
 const createTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
@@ -88,7 +87,7 @@ function CreateTransactionModal() {
     date,
   }: CreateTransactionSchema) {
     try {
-      axios.post("/api/transactions/create-transaction", {
+      await axios.post("/api/transactions/create-transaction", {
         name,
         amount,
         type,
@@ -99,7 +98,6 @@ function CreateTransactionModal() {
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()
-      revalidatePath("/transactions")
     } catch (error) {
       console.log(error)
       toast.error("Ocorreu um erro.")
