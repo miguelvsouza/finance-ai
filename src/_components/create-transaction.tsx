@@ -44,6 +44,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Input } from "./ui/input"
+import axios from "axios"
 
 const createTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
@@ -77,9 +78,23 @@ function CreateTransactionModal() {
     },
   })
 
-  async function onSubmit(data: CreateTransactionSchema) {
+  async function onSubmit({
+    name,
+    amount,
+    type,
+    category,
+    paymentMethod,
+    date,
+  }: CreateTransactionSchema) {
     try {
-      console.log(data)
+      axios.post("/api/transactions/create-transaction", {
+        name,
+        amount,
+        type,
+        category,
+        paymentMethod,
+        date,
+      })
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()
