@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   title: "Dashboard - Finance AI",
 }
 
-function DashboardPage() {
+export default function DashboardPage() {
   return (
-    <div className="h-screen">
+    <div className="h-full">
       <Header />
 
       <div className="grid w-full space-y-6 px-8 py-6">
@@ -157,5 +157,3 @@ function DashboardPage() {
     </div>
   )
 }
-
-export default DashboardPage

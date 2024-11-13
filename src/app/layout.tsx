@@ -25,7 +25,7 @@ export default function RootLayout({
         type="image/<generated>"
         sizes="<generated>"
       />
-      <body className={`${mulish.className} dark antialiased`}>
+      <body className={`${mulish.className} dark h-screen w-full antialiased`}>
         <TooltipProvider delayDuration={300}>
           <Toaster />
           {children}

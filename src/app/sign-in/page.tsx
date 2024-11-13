@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { SignInForm } from "./_components/sign-in-form"
+import { LoginWithGoogle } from "./_components/login-with-google"
 
 export const metadata: Metadata = {
   title: "Entrar - Finance AI",
 }
 
-function SignInPage() {
+export default function Page() {
   return (
-    <div className="grid h-screen w-full grid-cols-1 md:grid-cols-2">
+    <div className="grid h-full w-full grid-cols-1 md:grid-cols-2">
       <div className="mx-auto flex max-w-[550px] flex-col justify-center gap-8 px-12 py-8">
         <Image
           src="/logo.svg"
@@ -25,7 +25,7 @@ function SignInPage() {
           </p>
         </div>
 
-        <SignInForm />
+        <LoginWithGoogle />
 
         <p className="text-xs text-muted-foreground">
           Finance AI &#174; Termos de uso e política de privacidade
@@ -43,5 +43,3 @@ function SignInPage() {
     </div>
   )
 }
-
-export default SignInPage
