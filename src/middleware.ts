@@ -1,5 +1,8 @@
+import NextAuth from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "./_services/auth"
+import authConfig from "./_services/auth/auth.config"
+
+const { auth } = NextAuth(authConfig)
 
 const PUBLIC_ROUTES = ["/sign-in"]
 

@@ -1,5 +1,5 @@
 import { Button } from "@/_components/ui/button"
-import { signIn } from "@/_services/auth"
+import { signIn } from "@/_services/auth/auth"
 import Image from "next/image"
 
 export function LoginWithGoogle() {

@@ -7,6 +7,51 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
 
+model User {
+  id            String        @id @default(cuid())
+  name          String?
+  email         String        @unique
+  emailVerified DateTime?     @map("email_verified_at")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  transactions  Transaction[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Account {
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime @map("expires_at")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
 model Transaction {
   id            String                   @id @default(uuid())
   name          String
@@ -15,9 +60,11 @@ model Transaction {
   date          DateTime
   category      TransactionCategory
   paymentMethod TransactionPaymentMethod @map("payment_method")
+  userId        String                   @map("user_id")
   createdAt     DateTime                 @default(now()) @map("created_at")
   updatedAt     DateTime                 @updatedAt @map("updated_at")
 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("transactions")
 }
