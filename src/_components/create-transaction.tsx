@@ -44,6 +44,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Input } from "./ui/input"
+import { createTransaction } from "@/_actions/create-transaction"
 
 const createTransactionSchema = z.object({
   name: z.string().trim().min(1, { message: "O título é obrigatório." }),
@@ -86,7 +87,14 @@ function CreateTransactionModal() {
     date,
   }: CreateTransactionSchema) {
     try {
-      console.log({ name, amount, type, category, paymentMethod, date })
+      await createTransaction({
+        name,
+        amount,
+        type,
+        category,
+        paymentMethod,
+        date,
+      })
       setIsDialogOpen(false)
       toast.success("Salvo.")
       form.reset()
