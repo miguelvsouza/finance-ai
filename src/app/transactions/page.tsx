@@ -4,13 +4,27 @@ import { DataTable } from "@/_components/ui/data-table"
 import { prisma } from "@/_database/prisma"
 import { transactionColumns } from "./_columns"
 import type { Metadata } from "next"
+import { auth } from "@/_services/auth/auth"
+import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Transações - Finance AI",
 }
 
 async function TransactionsPage() {
-  const transactions = await prisma.transaction.findMany()
+  const session = await auth()
+
+  if (!session?.user?.email) {
+    redirect("/sign-in")
+  }
+
+  const transactions = await prisma.transaction.findMany({
+    where: {
+      user: {
+        email: session.user.email,
+      },
+    },
+  })
 
   return (
     <div>
