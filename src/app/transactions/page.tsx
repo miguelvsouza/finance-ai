@@ -24,6 +24,7 @@ async function TransactionsPage() {
         email: session.user.email,
       },
     },
+    orderBy: { date: "desc" },
   })
 
   return (
