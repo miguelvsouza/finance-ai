@@ -2,18 +2,21 @@
 
 import { Icon } from "@/_components/icon"
 import { TRANSACTION_TYPE_OPTIONS } from "@/_constants/transactions"
-import { TransactionPaymentMethod, TransactionType } from "@prisma/client"
+import { TransactionType } from "@prisma/client"
 import { DollarSign } from "lucide-react"
 
 interface TransactionItemProps {
-  title: string
-  type: TransactionType
-  paymentMethod: TransactionPaymentMethod
-  date: Date
-  amount: number
+  transaction: {
+    name: string
+    type: TransactionType
+    date: Date
+    amount: number
+  }
 }
 
-function TransactionItem({ title, type, date, amount }: TransactionItemProps) {
+function TransactionItem({
+  transaction: { name, type, date, amount },
+}: TransactionItemProps) {
   const [{ color }] = TRANSACTION_TYPE_OPTIONS.filter(
     (option) => option.value === type,
   )
@@ -30,7 +33,7 @@ function TransactionItem({ title, type, date, amount }: TransactionItemProps) {
           <DollarSign className="text-xs text-muted-foreground md:text-sm" />
         </Icon>
         <div>
-          <p className="text-sm md:text-base">{title}</p>
+          <p className="line-clamp-1 text-sm md:text-base">{name}</p>
           <span className="text-xs text-muted-foreground md:text-sm">
             {date.toLocaleDateString("pt-BR")}
           </span>
